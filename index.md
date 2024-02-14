@@ -188,6 +188,8 @@ Association in DSM III-R, IV2 and the World Health Organization
 --
 ...
 ```
+> In this example of using the `grep -A` command, I used it to search for the word "identify" in the `Session2PDF.txt` and I wanted it to print out 3 lines after it finds the word "identify. When we look at the example, the first line contains the word "identify" and then it follows up with the next 3 lines of text. It continues to do so until the end of the text file. This would be useful when you are looking up a specific text or pattern and you want some sort of context of why it's there.
+
 Another example of using the `grep -A` command:
 ```
 $ grep -A 2 "cells" ~/docsearch/technical/biomed/1471-213X-3-2.txt
@@ -211,10 +213,77 @@ $ grep -A 2 "cells" ~/docsearch/technical/biomed/1471-213X-3-2.txt
 --
 ...
 ```
+> This is another example of using the `grep -A` command, using it look for the word "cells" using a relative path to file I wanted to look into. It looks for the word "cells" and prints out the next 2 lines as well. In this example, in the 3rd search, it contains two occurences of "cells", one of them is included in the 2 lines that is being printed and then it prints out 2 more lines afterwards. 
 ---
 * Using the `grep -R` command
-> 
-* Using the 
+> The `grep -R` command helps us search for a pattern or specific text within a directory. This means that if you gave `grep -R` a specific word and a directory, it will look through all the files in that directory and print out the location of the file that contains the word, as well as the text in that file. The command is structured as follows: `grep -R "some word" /path`.
+
+Example of using the `grep -R` command:
+```
+$ grep -R "Economic" ~/docsearch/technical/government/
+/c/Users/Alex/docsearch/technical/government/About_LSC/ONTARIO_LEGAL_AID_SERIES.txt:initiated by the federal government's Office of Economic
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Economic Analysis of a Multi-Emissions Strategy
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Table 3. Summary of Economic Impacts by Scenario - 2010
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Protocol: An Economic Analysis to Reduce Carbon Pollution, Tellus
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:DeCanio, Stephen J., 1997. "Economic Modeling and the False 
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Tradeoff Between Environmental Protection and Economic Growth,"
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Contemporary Economic Policy, Vol. 15 (October): 10-27, 1997.
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Protocol on U.S. Energy Markets and Economic Activity,      
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Hanson, Donald A, 1999. A Framework for Economic Impact Analysis
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Climate Change Economics and Policy: An RFF Anthology, edited by MA
+/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Preparing Economic Analysis, EPA-240-R-00-003, Office of the/c/Users/Alex/docsearch/technical/government/Env_Prot_Agen/jeffordslieberm.txt:Bureau of Economic Analysis (BEA) interindustry data, which 
+a
+...
+```
+>
+
+Another example of using the `grep -R` command:
+```
+$ grep -R "organisms" ~/docsearch/technical/plos
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020012.txt:        family of proteins with members in higher organisms, including SIR-2.1, an enzyme that
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020012.txt:        enzymes in lower organisms. Unlike SIRT-1, these related enzymes are known to increase
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020012.txt:        research, notably by replicating the yeast work in higher organisms. “We have very
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020012.txt:        he says. “If that's true—and it really seems to be true for a lot of organisms—if it's true
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020012.txt:        ageing in worms, but the mutations inhibit its action and enable the organisms to live
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020035.txt:        For half a century, natural products from microorganisms have been the main source of
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020035.txt:        Streptomyces is the best-known genus. These organisms make an
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020035.txt:        studies were on organisms making antibiotics of the ‘aromatic’ family, which includes
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020042.txt:        the fundamental workings of biological organisms, I propose a small science, relatively
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020043.txt:        degree of cooperation between two organisms (or tissues) must depend upon their degree of
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020043.txt:        classical cytogenetics in favor of the molecular biology of model organisms, and these
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020043.txt:        organisms, chimeras are temporary and unstable. How have scale insects suppressed the
+/c/Users/Alex/docsearch/technical/plos/journal.pbio.0020053.txt:        years, tiny organisms have engaged in an arms race, hurling toxic molecules at each other
+```
+>
+---
+* Using the `grep -v` command:
+> The `grep -v` command inverts the search, basically the opposite of the last 3 examples of grep, it will only display the lines that does not include the text or pattern that is specified. The `grep -v` command is structured as follows: `grep -v "text or pattern" [Filename]`.
+
+Example of using the `grep -v` command:
+```
+$ grep -v "Barnes" Barnes_pro_bono.txt
+Duane D. Stanford
+Wednesday, December 18, 2002
+Steven Gottlieb thought it was a joke when he checked his
+work for the Atlanta Legal Aid Society.
+Gottlieb, who was vacationing in New Zealand, asked his
+secretary to check it out. She confirmed the unbelievable --- it
+"I've never heard of a former governor going to work for a legal
+aid program," said Gottlieb. "I take that as an incredible
+compliment."
+will go to work for the nonprofit group for six months, donating
+speaking at a press conference attended by Gottlieb, said his first
+priority has always been to look out for Georgians' interests.
+"Holding elective office is not the only way to help others,"
+in Marietta before winning the governor's race in 1998.
+that dogged him during his re-election campaign and contributed to
+his surprise loss to Sonny Perdue on Nov. 5. Asked about his legacy
+up to others to determine."
+...
+```
+>
+Another example of using the `grep -v` command:
+
 
 ## Sources used
 > * RackSpace Technology: [Link](https://docs.rackspace.com/docs/use-the-linux-grep-command)
