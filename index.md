@@ -60,10 +60,162 @@ public class ArrayTests {
 ---
 
 * The symptom, as the output of running the tests (provide it as a screen shot of running JUnit with at least the two inputs above):
-![Image](6.PNG)
-> When I ran the tests using the inputs from first *failure-inducing* inputs, it gave me two failures for `testReverseInPlace` and `testReversed`. In `testReversedInPlace`, this test was to see if the elements in the array would be reversed in place. In the failure message, it states that in `testReverseInPlace`, the 2nd element in the array was 
+  
+![Image](7.PNG)
+> * When I ran the tests using the inputs from first *failure-inducing* inputs, it gave me two failures for `testReverseInPlace` and `testReversed`.
+> * In the failure message, it states that in `testReverseInPlace`, the 3rd element in the array was 4, when the expected should be 2. This tells us that the `reverseInPlace()` method took the array given ([1,2,3,4,5]), passed through the `reverseInPlace()` method and overwritten the 3rd element in the array with 2, because when i = 3 for arr[3] = arr[5 - 3 - 1], it assigned arr[3] with arr[2]. Giving us [5,2,3,2,5] at i = 3. Coinciding with i = 4, where arr[4] = arr[0], giving us [1,2,3,2,5]. 
+> * In the failure message for `testReversed`, it states that the expected value in 1st element was 3, but it was 0. This is caused by the bug in the `reversed()` method, where a new array called `newArray` was created with the same length as the array that's being tested. This meant that the new array, `newArray` only consists of values of 0 for a particular array length. Therefore, `arr[i] = newArray[arr.length - i - 1]` basically rewrote all of the values in our test array ([1,2,3]) and set them all to 0. An example would be when i = 0, arr[0] = 1, but we set it equal to newArray[3 - 0 - 1], which is newArray[2] = 0. So, arr[0] = 0. Leaving us with [0,2,3] and would continue on with the other elements until it is [0,0,0]. 
+---
 * The bug, as the before-and-after code change required to fix it (as two code blocks in Markdown):
+> Before code change:
+```
+public class ArrayExamples {
 
+  // Changes the input array to be in reversed order
+  static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length; i += 1) {
+      arr[i] = arr[arr.length - i - 1];
+    }
+  }
 
+  // Returns a *new* array with all the elements of the input array in reversed
+  // order
+  static int[] reversed(int[] arr) {
+    int[] newArray = new int[arr.length];
+    for(int i = 0; i < arr.length; i += 1) {
+      arr[i] = newArray[arr.length - i - 1];
+    }
+    return arr;
+  }
+```
+> After code change:
+```
+public class ArrayExamples {
+
+  // Changes the input array to be in reversed order
+  static void reverseInPlace(int[] arr) {
+    int left = 0; //this would be the first element of the array. 
+    int right = arr.length - 1; // this would be the last element of an array.
+    while (left < right){ 
+      int start = arr[left]; //this would be the start of the array, which would be some value in arr[0], in our case, 1. 
+      arr[left] = arr[right]; //right would be the end of the array, now it basically switches arr[0] and arr[arr.length - 1]
+      arr[right] = start; //now the right side of the array is now the beginning of the array. 
+
+      left++; //moves onto the next element of the array, which is arr[1] = 2.
+      right--; //moves down the element of the array, which is arr[3] = 4, continuing to switch until it meets in the middle.
+    }
+  }
+
+  // Returns a *new* array with all the elements of the input array in reversed
+  // order
+  static int[] reversed(int[] arr) {
+    int[] newArray = new int[arr.length];
+    for(int i = 0; i < arr.length; i += 1) {
+      newArray[i] = arr[arr.length - i - 1]; //instead of setting arr[i] = newArray, where it only receives values of 0, set newArray[i] = the original array.
+    }
+    return newArray; //instead of returning the arr, return the newArray with the reversed array. 
+  }
+
+```
+> 
+---
 ## Part 2 - Researching Commands
 
+> In part 2, I will be looking at the command `grep`, which helps us search for specific texts or patterns within a text file.
+
+* Using the `grep -n` command
+> The `grep -n` command is structured as follows: `grep -n "some word you would like to search" [filename]`. In this `grep` command, it helps us search for a particular word in a text. It goes through every line in the txt file, searching for the specific word and noting which line has that specific word.
+
+Example of using the `grep -n` command:
+```
+$ grep -n "alcohol" Session2-PDF.txt
+9:Many patients in the emergency department (ED) have alcohol
+13:further examine and refine alcohol-screening questionnaires in the
+23:illness, and from problematic consumption to alcohol use disorder.
+27:screening for several alcohol endpoints. Acute intoxication is of
+29:certainly be considered an "alcohol problem." The blood or breath
+30:alcohol concentration (BAC), coupled with our clinical
+31:observations, may help us identify intoxication. Most alcohol
+32:screening tests identify patients with alcohol use disorders or
+33:problematic consumption of alcohol. The American Psychiatric
+36:(ICD-9, -10) have rigorously defined alcohol abuse and alcohol
+40:cases of alcohol abuse meet the ICD-10 definition. In general, an
+...
+```
+> When I ran the `grep -n` command, using the file `Session2-PDF.txt` from `technical/government/Alcohol_Problems` to search for the word "alcohol", it displayed each line that contained the word "alcohol" and noted which line it occurred as well. Knowing which line that contains a specific text or pattern is pretty useful in allowing us to quickly access that exact location and I believe it is also useful for documenting. 
+> 
+Another example of using `grep -n` command:
+```
+$ grep -n "Fiscal" ~/docsearch/technical/government/Gen_Account_Office/d01591sp.txt
+112:Q4.1. How Has Federal Fiscal Policy Affected U.S. National
+124:Q4.5. What are the Implications of Current Fiscal Policy
+260:Alternative Fiscal Policy Simulations (2000-2075) 86
+265:Figure 4.4:GDP Per Capita Under Alternative Fiscal Policy
+2331:America Save for its Old Age? Fiscal Policy, Population Aging, and
+2849:Q4.1. How Has Federal Fiscal Policy
+2931:"Federal Budget Estimates, Fiscal Year 2001," Survey of Current
+2933:pp. 16-25; or Budget of the U.S. Government: Fiscal Year 2001,
+3080:see N. Gregory Mankiw, "The Saver-Spender Theory of Fiscal Policy,"
+3200:Long-Term Fiscal Outlook (GAO/AIMD/OCE-98-19, October 22, 1997),
+3201:Budget Issues: Long-Term Fiscal Outlook (GAO/T-AIMD/OCE-98-83,
+3205:Balancing Fiscal Risk (GAO-01-385T, February 6, 2001).
+...
+```
+> In this example, I used the `grep -n` command to search for the word "Fiscal", using a relative path to a specific text file. Again, it displays each line that the word "Fiscal" occurs in and denotes which line it occurs on.
+---
+
+* Using the `grep -A` command
+> The `grep -A` command is pretty interesting, it searches for a specific text and then you include n-number of lines you would want to print after it finds that specific word. The `grep -A` command is structured as follows: `grep -A (# of lines) "text" [Filename]`.
+
+Example of using the `grep -A (#number of lines) command`:
+```
+$ grep -A 3 identify Session2-PDF.txt
+to identify these patients has been conducted, but several areas of
+interest should be addressed by further research. We need to
+further examine and refine alcohol-screening questionnaires in the
+ED. We need to determine the sequence and combination of questions
+--
+study barriers to screening, identify factors that promote
+screening implementation, and demonstrate the impact of a screening
+program in the ED. The final aim of screening must be improved
+outcomes through referral and counseling. Identification is only
+--
+observations, may help us identify intoxication. Most alcohol
+screening tests identify patients with alcohol use disorders or
+problematic consumption of alcohol. The American Psychiatric
+Association in DSM III-R, IV2 and the World Health Organization
+(WHO) in the 9th and 10th International Classification of Diseases
+--
+...
+```
+Another example of using the `grep -A` command:
+```
+$ grep -A 2 "cells" ~/docsearch/technical/biomed/1471-213X-3-2.txt
+        class that transforms C57mg mouse mammary epithelial cells
+        and also promotes duplication of the dorso-ventral axis
+        when over-expressed in Xenopus embryos. Wnts in this
+--
+        of Wnts does not transform C57mg cells nor promote axis
+        duplication. Instead, when over-expressed in frog or fish
+        embryos, these Wnts perturb the movements of gastrulation.
+--
+        endogenous expression of Wnt-5a maintains C57mg cells in a
+        normal growth state since anti-sense Wnt-5a mimics Wnt-1
+        transformation of C57mg cells [ 12 ] . This data suggests
+        that Wnt-1 and Wnt-5a work in an opposing manner in some
+        cellular contexts. This potential role of Wnt-5a as a tumor
+--
+        ectopic Wnt-5a in human uroepithelial cells prevents
+        tumorigenesis when injected into athymic nude mice [ 13 ]
+        .
+--
+...
+```
+---
+* Using the `grep -R` command
+> 
+* Using the 
+
+## Sources used
+> * RackSpace Technology: [Link](https://docs.rackspace.com/docs/use-the-linux-grep-command)
+> * Geeksforgeeks.org: [Link](https://www.geeksforgeeks.org/grep-command-in-unixlinux/)
