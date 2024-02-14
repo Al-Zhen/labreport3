@@ -27,6 +27,8 @@ public class ArrayTests {
 
 ```
 > In the original tests for `testReverseInPlace()` and `testReversed()`, it would pass because in the original test for `testReverseInPlace`, it only had one element in the array (which was just the value of 3) and when passed through the `reverseInPlace()` method, it would still give us the array of 3, giving us a pass. The original test for `testReversed()`, it only compared two empty arrays, also giving us a pass. Therefore, in order to create a test that shows that there are bugs in the `ArrayExamples.java`, we would have to "spoon-feed" it, by giving it a sizeable array, show that correct order of the array in respect to the test and then compare the two arrays in order to properly test.
+
+
 ---
  
 * An input that *doesn't* induce a failure, as a JUnit test and any associated code:
