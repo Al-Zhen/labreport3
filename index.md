@@ -123,7 +123,7 @@ public class ArrayExamples {
 
 > In part 2, I will be looking at the command `grep`, which helps us search for specific texts or patterns within a text file.
 
-* Using the `grep -n` command
+1. Using the `grep -n` command
 > The `grep -n` command is structured as follows: `grep -n "some word you would like to search" [filename]`. In this `grep` command, it helps us search for a particular word in a text. It goes through every line in the txt file, searching for the specific word and noting which line has that specific word.
 
 Example of using the `grep -n` command:
@@ -164,7 +164,7 @@ $ grep -n "Fiscal" ~/docsearch/technical/government/Gen_Account_Office/d01591sp.
 > In this example, I used the `grep -n` command to search for the word "Fiscal", using a relative path to a specific text file. Again, it displays each line that the word "Fiscal" occurs in and denotes which line it occurs on.
 ---
 
-* Using the `grep -A` command
+2. Using the `grep -A` command
 > The `grep -A` command is pretty interesting, it searches for a specific text and then you include n-number of lines you would want to print after it finds that specific word. The `grep -A` command is structured as follows: `grep -A (# of lines) "text" [Filename]`.
 
 Example of using the `grep -A (#number of lines) command`:
@@ -215,7 +215,7 @@ $ grep -A 2 "cells" ~/docsearch/technical/biomed/1471-213X-3-2.txt
 ```
 > This is another example of using the `grep -A` command, using it look for the word "cells" using a relative path to file I wanted to look into. It looks for the word "cells" and prints out the next 2 lines as well. In this example, in the 3rd search, it contains two occurences of "cells", one of them is included in the 2 lines that is being printed and then it prints out 2 more lines afterwards. 
 ---
-* Using the `grep -R` command
+3. Using the `grep -R` command
 > The `grep -R` command helps us search for a pattern or specific text within a directory. This means that if you gave `grep -R` a specific word and a directory, it will look through all the files in that directory and print out the location of the file that contains the word, as well as the text in that file. The command is structured as follows: `grep -R "some word" /path`.
 
 Example of using the `grep -R` command:
@@ -253,10 +253,11 @@ $ grep -R "organisms" ~/docsearch/technical/plos
 /c/Users/Alex/docsearch/technical/plos/journal.pbio.0020043.txt:        classical cytogenetics in favor of the molecular biology of model organisms, and these
 /c/Users/Alex/docsearch/technical/plos/journal.pbio.0020043.txt:        organisms, chimeras are temporary and unstable. How have scale insects suppressed the
 /c/Users/Alex/docsearch/technical/plos/journal.pbio.0020053.txt:        years, tiny organisms have engaged in an arms race, hurling toxic molecules at each other
+...
 ```
 >
 ---
-* Using the `grep -v` command:
+4. Using the `grep -v` command:
 > The `grep -v` command inverts the search, basically the opposite of the last 3 examples of grep, it will only display the lines that does not include the text or pattern that is specified. The `grep -v` command is structured as follows: `grep -v "text or pattern" [Filename]`.
 
 Example of using the `grep -v` command:
@@ -284,7 +285,29 @@ up to others to determine."
 >
 Another example of using the `grep -v` command:
 
+```
+$ grep -v "molecules" ~/docsearch/technical/plos/journal.pbio.0020012.txt
+        The pathologist makes do with red wine until an effective drug is available, the
+        biochemist discards the bread from her sandwiches, and the mathematician indulges in
+        designer chocolate with a clear conscience. The demographer sticks to vitamin supplements,
+        and while the evolutionary biologist calculates the compensations of celibacy, the
+        population biologist transplants gonads, but so far only those of his laboratory mice.
+        Their common cause is to control and extend the healthy lifespan of humans. They want to
+        cure ageing and the diseases that come with it.
+        “I would take resveratrol if it were feasible,” notes David Sinclair, assistant
+        professor of pathology at Harvard Medical School in Boston, Massachusetts. In the meantime,
+        he adds, “I do enjoy a glass of red wine about once a day.” It was Sinclair's laboratory,
+        in association with a commercial partner, that revealed last August how the team had
+        lifespan. The most proficient of the group is resveratrol, the plant polyphenol found in
+        red wine, and its discovery as a potential elixir to combat ageing represents another
+        extraordinary advance in a decade of discoveries that have revolutionised the field.
 
+            ageing, like diabetes and Alzheimer's.”
+...
+```
+>
+
+---
 ## Sources used
-> * RackSpace Technology: [Link](https://docs.rackspace.com/docs/use-the-linux-grep-command)
-> * Geeksforgeeks.org: [Link](https://www.geeksforgeeks.org/grep-command-in-unixlinux/)
+> * RackSpace Technology: https://docs.rackspace.com/docs/use-the-linux-grep-command
+> * Geeksforgeeks.org: https://www.geeksforgeeks.org/grep-command-in-unixlinux/
