@@ -60,7 +60,7 @@ public class ArrayTests {
 ---
 
 * The symptom, as the output of running the tests (provide it as a screen shot of running JUnit with at least the two inputs above):
-![Image](5.PNG)
+![Image](6.PNG)
 > When I ran the tests using the inputs from first *failure-inducing* inputs, it gave me two failures for `testReverseInPlace` and `testReversed`. In `testReversedInPlace`, this test was to see if the elements in the array would be reversed in place. In the failure message, it states that in `testReverseInPlace`, the 2nd element in the array was 
 * The bug, as the before-and-after code change required to fix it (as two code blocks in Markdown):
 
