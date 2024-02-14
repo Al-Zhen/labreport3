@@ -1,4 +1,4 @@
-# Lab Report 3 - Alexander Zhen 
+# CSE 15L - Lab Report 3 - Alexander Zhen 
 
 ## Part 1 - Bugs
 > In part 1, I will be using the `ArrayExamples.java` as the chosen bug. 
@@ -117,7 +117,6 @@ public class ArrayExamples {
   }
 
 ```
-> 
 ---
 ## Part 2 - Researching Commands
 
@@ -235,7 +234,7 @@ $ grep -R "Economic" ~/docsearch/technical/government/
 a
 ...
 ```
->
+> In this example, I used `grep -R` to search for a term "Economic" in the `/government` directory. This gave me the absolute paths of the text files that contain the search term of "Economic", as well as a line from the text file containing it. The `grep -R` would really be useful for saving time on trying to find which file contains a certain search term/pattern, as it will point to the path of that specific file and display the line of text it is in. I believe it would be useful when working in larger codebases, when you're trying to find a specific string from all the files, it would save quite a bit of time.
 
 Another example of using the `grep -R` command:
 ```
@@ -255,7 +254,7 @@ $ grep -R "organisms" ~/docsearch/technical/plos
 /c/Users/Alex/docsearch/technical/plos/journal.pbio.0020053.txt:        years, tiny organisms have engaged in an arms race, hurling toxic molecules at each other
 ...
 ```
->
+> This is another example of using the `grep -R` command, I used the search term of "organisms" and wanted to look for which files in the `plos` directory had this specific term. Similar to the last example, it gave me the absolute path of the txt files and the line of text that contains the search term.
 ---
 4. Using the `grep -v` command:
 > The `grep -v` command inverts the search, basically the opposite of the last 3 examples of grep, it will only display the lines that does not include the text or pattern that is specified. The `grep -v` command is structured as follows: `grep -v "text or pattern" [Filename]`.
@@ -282,7 +281,8 @@ his surprise loss to Sonny Perdue on Nov. 5. Asked about his legacy
 up to others to determine."
 ...
 ```
->
+> Using the `grep -v` command, I wanted to omit the search term of "Barnes" from the `Barnes_pro_bono.txt` text file. When doing so, every line that contained the search term of "Barnes" was not included in the output. I believe this would be useful in filtering out lines that you don't want to see or like specific keywords, allowing you focus on something more relevant to the issue at hand.
+
 Another example of using the `grep -v` command:
 
 ```
@@ -305,7 +305,7 @@ $ grep -v "molecules" ~/docsearch/technical/plos/journal.pbio.0020012.txt
             ageing, like diabetes and Alzheimer's.”
 ...
 ```
->
+> This is another example of using the `grep -v` command, in this example I used the search term "molecules" to be omitted from the txt file. "Molecules" was not apart of the the output text, as it was omitted. An example would be the empty space before "ageing, like diabetes and Alzheimer's/", there was a line of text that contained "molecules", therefore it was not included. 
 
 ---
 ## Sources used
